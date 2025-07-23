@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, ArrowRight, Layers, Zap, Eye } from 'lucide-react';
+import Navigation from '../components/Navigation';
 
 export default function Home() {
   const [visibleSections, setVisibleSections] = useState<Set<number>>(new Set());
@@ -66,19 +67,7 @@ export default function Home() {
       <div className="data-stream"></div>
       <div className="data-stream"></div>
 
-      {/* Holographic Navigation Interface */}
-      <nav className="nav-container">
-        <div className="nav-content">
-          <div className="logo">Echo Chamber</div>
-          <ul className="nav-links">
-            <li><button onClick={() => smoothScrollTo('hero')}>Initialize</button></li>
-            <li><button onClick={() => smoothScrollTo('about')}>System</button></li>
-            <li><button onClick={() => smoothScrollTo('features')}>Modules</button></li>
-            <li><button onClick={() => smoothScrollTo('narrative')}>Protocol</button></li>
-            <li><button onClick={() => smoothScrollTo('contact')}>Interface</button></li>
-          </ul>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Main Content */}
       <main>
