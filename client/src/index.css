@@ -24,17 +24,21 @@
   --ring: hsl(240, 4.9%, 83.9%);
   --radius: 0.5rem;
   
-  /* Echo Chamber Custom Colors - Refined */
-  --echo-primary: hsl(210, 100%, 60%);
-  --echo-secondary: hsl(280, 70%, 65%);
-  --echo-background: hsl(222, 16%, 8%);
-  --echo-surface: hsl(220, 20%, 12%);
-  --echo-surface-hover: hsl(220, 20%, 16%);
-  --echo-border: hsl(210, 30%, 20%);
-  --echo-accent: hsl(210, 100%, 60%, 0.1);
-  --echo-text: hsl(0, 0%, 95%);
-  --echo-text-muted: hsl(0, 0%, 70%);
-  --echo-text-subtle: hsl(0, 0%, 55%);
+  /* Sci-Fi Interface Colors - Movie Inspired */
+  --holo-cyan: hsl(180, 100%, 70%);
+  --holo-blue: hsl(220, 100%, 60%);
+  --holo-orange: hsl(25, 100%, 55%);
+  --matrix-green: hsl(120, 100%, 50%);
+  --warning-red: hsl(0, 100%, 60%);
+  
+  --bg-void: hsl(220, 25%, 5%);
+  --bg-panel: hsla(220, 40%, 10%, 0.8);
+  --bg-glass: hsla(180, 100%, 70%, 0.05);
+  --border-holo: hsla(180, 100%, 70%, 0.3);
+  --glow-intense: hsla(180, 100%, 70%, 0.8);
+  --text-primary: hsl(180, 50%, 90%);
+  --text-secondary: hsl(180, 30%, 70%);
+  --text-dim: hsla(180, 20%, 60%, 0.6);
 }
 
 @layer base {
@@ -48,16 +52,37 @@
 
   body {
     @apply font-sans antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: var(--echo-background);
-    color: var(--echo-text);
+    font-family: 'Inter', 'Orbitron', monospace, sans-serif;
+    background: var(--bg-void);
+    color: var(--text-primary);
     overflow-x: hidden;
     line-height: 1.6;
+    position: relative;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(ellipse at 20% 30%, hsla(180, 100%, 70%, 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, hsla(220, 100%, 60%, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, hsla(25, 100%, 55%, 0.03) 0%, transparent 70%);
+    z-index: -2;
+    animation: atmosphericShift 30s ease-in-out infinite alternate;
+  }
+  
+  @keyframes atmosphericShift {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-10px, -5px) scale(1.02); }
   }
 }
 
 @layer components {
-  /* Subtle Background Pattern */
+  /* Holographic Grid Background */
   .background-layer {
     position: fixed;
     top: 0;
@@ -65,15 +90,45 @@
     width: 100%;
     height: 100%;
     z-index: -1;
-    opacity: 0.05;
     background: 
-      radial-gradient(circle at 25% 75%, var(--echo-primary) 0%, transparent 40%),
-      radial-gradient(circle at 75% 25%, var(--echo-secondary) 0%, transparent 40%);
+      linear-gradient(rgba(0, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridPan 20s linear infinite;
+  }
+  
+  @keyframes gridPan {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+  }
+
+  /* Scan Lines Effect */
+  .scan-lines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 255, 0.03) 2px,
+      rgba(0, 255, 255, 0.03) 4px
+    );
+    animation: scanMove 0.1s linear infinite;
+  }
+  
+  @keyframes scanMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
   }
 
   /* Removed overly distracting glitch overlay */
 
-  /* Navigation - Always Visible */
+  /* Holographic Navigation Interface */
   .nav-container {
     position: fixed;
     top: 0;
@@ -81,10 +136,32 @@
     width: 100%;
     z-index: 100;
     padding: 1rem 2rem;
-    background: var(--echo-surface);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--echo-border);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    background: var(--bg-panel);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border-holo);
+    box-shadow: 
+      0 4px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(0, 255, 255, 0.1);
+    position: relative;
+  }
+  
+  .nav-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      var(--holo-cyan), 
+      transparent);
+    animation: energyPulse 3s ease-in-out infinite;
+  }
+  
+  @keyframes energyPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
   }
 
   .nav-content {
@@ -98,13 +175,35 @@
   .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--echo-primary);
-    letter-spacing: -0.02em;
+    color: var(--holo-cyan);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow: 
+      0 0 10px var(--glow-intense),
+      0 0 20px var(--glow-intense),
+      0 0 30px var(--holo-cyan);
+    position: relative;
+  }
+  
+  .logo::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--holo-cyan), transparent);
+    animation: logoScan 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes logoScan {
+    0% { width: 0; }
+    100% { width: 100%; }
   }
 
   .nav-links {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.25rem;
     align-items: center;
     list-style: none;
     margin: 0;
@@ -112,26 +211,55 @@
   }
 
   .nav-links button {
-    padding: 0.75rem 1.25rem;
-    background: transparent;
-    border: none;
-    color: var(--echo-text-muted);
+    padding: 0.75rem 1.5rem;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-holo);
+    color: var(--text-secondary);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.95rem;
-    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    font-family: 'Inter', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 0;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
     transition: all 0.3s ease;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nav-links button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(0, 255, 255, 0.2), 
+      transparent);
+    transition: left 0.5s ease;
   }
 
   .nav-links button:hover,
   .nav-links button:focus {
-    color: var(--echo-text);
-    background: var(--echo-surface-hover);
+    color: var(--text-primary);
+    background: var(--bg-glass);
+    border-color: var(--holo-cyan);
+    box-shadow: 
+      0 0 20px rgba(0, 255, 255, 0.3),
+      inset 0 0 20px rgba(0, 255, 255, 0.1);
+    text-shadow: 0 0 10px var(--holo-cyan);
     outline: none;
   }
+  
+  .nav-links button:hover::before {
+    left: 100%;
+  }
 
-  /* Section Styles - Improved Layout */
+  /* Holographic Section Layouts */
   .section {
     min-height: 100vh;
     padding: 6rem 2rem 4rem;
@@ -142,62 +270,140 @@
   }
 
   .section-content {
-    max-width: 900px;
+    max-width: 1100px;
     width: 100%;
     text-align: left;
     position: relative;
     z-index: 2;
   }
 
-  /* Hero Section */
+  /* Hero Section - Holographic Display */
   .hero {
-    background: var(--echo-background);
+    background: transparent;
     text-align: center;
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, 
+      rgba(0, 255, 255, 0.1) 0%, 
+      transparent 70%);
+    transform: translate(-50%, -50%);
+    animation: holoField 8s ease-in-out infinite;
+    z-index: -1;
+  }
+  
+  @keyframes holoField {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
   }
 
   .hero h1 {
-    font-size: clamp(3rem, 8vw, 5.5rem);
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    color: var(--echo-text);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    color: var(--holo-cyan);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 0.9;
+    text-shadow: 
+      0 0 20px var(--glow-intense),
+      0 0 40px var(--holo-cyan),
+      0 0 60px var(--holo-cyan);
+    animation: titleGlow 4s ease-in-out infinite alternate;
+    position: relative;
+  }
+  
+  @keyframes titleGlow {
+    0% { text-shadow: 0 0 20px var(--glow-intense), 0 0 40px var(--holo-cyan); }
+    100% { text-shadow: 0 0 30px var(--glow-intense), 0 0 60px var(--holo-cyan), 0 0 80px var(--holo-cyan); }
   }
 
   .hero .subtitle {
-    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-    color: var(--echo-text-muted);
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    color: var(--text-secondary);
     margin-bottom: 3rem;
     line-height: 1.6;
-    max-width: 600px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    font-weight: 300;
+    letter-spacing: 0.02em;
   }
 
-  /* Content Sections */
+  /* Transparent Glass Panels */
   .content-section {
-    background: var(--echo-surface);
-    border: 1px solid var(--echo-border);
-    border-radius: 1.5rem;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border-holo);
+    border-radius: 0;
+    clip-path: polygon(20px 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);
     padding: 4rem 3rem;
-    margin: 2rem 0;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    margin: 3rem 0;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(0, 255, 255, 0.1),
+      0 0 60px rgba(0, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .content-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(0, 255, 255, 0.05), 
+      transparent);
+    animation: panelScan 6s ease-in-out infinite;
+  }
+  
+  @keyframes panelScan {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: -100%; }
   }
 
   .content-section h2 {
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: var(--echo-primary);
-    letter-spacing: -0.01em;
-    line-height: 1.2;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    color: var(--holo-cyan);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-shadow: 0 0 20px var(--holo-cyan);
+    position: relative;
+  }
+  
+  .content-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--holo-cyan), transparent);
+    box-shadow: 0 0 10px var(--holo-cyan);
   }
 
   .content-section p {
-    font-size: 1.125rem;
-    line-height: 1.7;
+    font-size: 1.1rem;
+    line-height: 1.8;
     margin-bottom: 1.5rem;
-    color: var(--echo-text-muted);
+    color: var(--text-secondary);
+    font-weight: 300;
+    letter-spacing: 0.01em;
   }
 
   .content-section p:last-child {
@@ -227,72 +433,212 @@
 
   /* Removed mirror elements - too distracting */
 
-  /* Interactive Elements - Improved Design */
+  /* Holographic Interface Buttons */
   .cta-button {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1rem 2rem;
-    background: var(--echo-primary);
-    border: none;
-    border-radius: 0.75rem;
-    color: white;
+    gap: 0.75rem;
+    padding: 1.25rem 3rem;
+    background: var(--bg-glass);
+    border: 2px solid var(--holo-cyan);
+    border-radius: 0;
+    clip-path: polygon(15px 0%, 100% 0%, calc(100% - 15px) 100%, 0% 100%);
+    color: var(--holo-cyan);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Inter', monospace;
     transition: all 0.3s ease;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+      0 0 20px rgba(0, 255, 255, 0.2),
+      inset 0 0 20px rgba(0, 255, 255, 0.05);
+    text-shadow: 0 0 10px var(--holo-cyan);
+  }
+  
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(0, 255, 255, 0.2), 
+      transparent);
+    transition: left 0.5s ease;
+  }
+  
+  .cta-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    width: 6px;
+    height: 6px;
+    background: var(--holo-cyan);
+    box-shadow: 0 0 10px var(--holo-cyan);
+    animation: buttonPulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes buttonPulse {
+    0%, 100% { opacity: 0.5; transform: translateY(-50%) scale(1); }
+    50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
   }
 
   .cta-button:hover,
   .cta-button:focus {
-    background: hsl(210, 100%, 55%);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+    background: rgba(0, 255, 255, 0.1);
+    border-color: var(--holo-cyan);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 0 40px rgba(0, 255, 255, 0.4),
+      0 8px 20px rgba(0, 255, 255, 0.2),
+      inset 0 0 20px rgba(0, 255, 255, 0.1);
+    text-shadow: 0 0 20px var(--holo-cyan);
     outline: none;
+  }
+  
+  .cta-button:hover::before {
+    left: 100%;
   }
 
   .cta-button:active {
     transform: translateY(0);
   }
 
-  /* Card Components */
+  /* 3D Holographic Cards */
   .info-card {
-    background: var(--echo-surface);
-    border: 1px solid var(--echo-border);
-    border-radius: 1rem;
-    padding: 2rem;
-    margin: 1.5rem 0;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    background: var(--bg-glass);
+    backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid var(--border-holo);
+    border-radius: 0;
+    clip-path: polygon(15px 0%, 100% 0%, calc(100% - 15px) 100%, 0% 100%);
+    padding: 2.5rem 2rem;
+    margin: 2rem 0;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(0, 255, 255, 0.1),
+      0 0 60px rgba(0, 255, 255, 0.03);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+  }
+  
+  .info-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+      transparent, 
+      rgba(0, 255, 255, 0.1), 
+      transparent, 
+      rgba(255, 165, 0, 0.1), 
+      transparent);
+    z-index: -1;
+    animation: cardBorderScan 4s linear infinite;
+  }
+  
+  @keyframes cardBorderScan {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 
   .info-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    border-color: var(--echo-primary);
+    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateY(-10px);
+    box-shadow: 
+      0 20px 40px rgba(0, 255, 255, 0.2),
+      0 10px 20px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(0, 255, 255, 0.2);
+    border-color: var(--holo-cyan);
   }
 
   .info-card h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--echo-primary);
-    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--holo-cyan);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-shadow: 0 0 15px var(--holo-cyan);
+  }
+  
+  .info-card h3 svg {
+    filter: drop-shadow(0 0 10px var(--holo-cyan));
   }
 
   .info-card p {
-    color: var(--echo-text-muted);
-    line-height: 1.6;
+    color: var(--text-secondary);
+    line-height: 1.7;
     margin-bottom: 0;
+    font-weight: 300;
+    letter-spacing: 0.01em;
   }
 
-  /* Features Grid */
+  /* 3D Features Grid */
   .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
-    margin: 3rem 0;
+    margin: 4rem 0;
+    perspective: 1000px;
+  }
+  
+  /* Technical Blueprint Overlay */
+  .blueprint-section {
+    position: relative;
+  }
+  
+  .blueprint-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: -1;
+    animation: blueprintShift 15s linear infinite;
+  }
+  
+  @keyframes blueprintShift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(20px, 20px); }
+  }
+  
+  /* Data Stream Lines */
+  .data-stream {
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(180deg, transparent, var(--holo-cyan), transparent);
+    animation: dataFlow 3s linear infinite;
+  }
+  
+  .data-stream:nth-child(1) { left: 10%; animation-delay: 0s; }
+  .data-stream:nth-child(2) { left: 30%; animation-delay: 1s; }
+  .data-stream:nth-child(3) { left: 70%; animation-delay: 2s; }
+  .data-stream:nth-child(4) { left: 90%; animation-delay: 0.5s; }
+  
+  @keyframes dataFlow {
+    0% { transform: translateY(-100px); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
   }
 
   /* Responsive Design */

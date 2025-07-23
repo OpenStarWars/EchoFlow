@@ -56,26 +56,33 @@ export default function Home() {
 
   return (
     <div className="echo-chamber-app">
-      {/* Subtle Background */}
+      {/* Holographic Background Effects */}
       <div className="background-layer"></div>
+      <div className="scan-lines"></div>
+      
+      {/* Data Streams */}
+      <div className="data-stream"></div>
+      <div className="data-stream"></div>
+      <div className="data-stream"></div>
+      <div className="data-stream"></div>
 
-      {/* Navigation - Always Visible */}
+      {/* Holographic Navigation Interface */}
       <nav className="nav-container">
         <div className="nav-content">
           <div className="logo">Echo Chamber</div>
           <ul className="nav-links">
-            <li><button onClick={() => smoothScrollTo('hero')}>Home</button></li>
-            <li><button onClick={() => smoothScrollTo('about')}>About</button></li>
-            <li><button onClick={() => smoothScrollTo('features')}>Features</button></li>
-            <li><button onClick={() => smoothScrollTo('narrative')}>Narrative</button></li>
-            <li><button onClick={() => smoothScrollTo('contact')}>Contact</button></li>
+            <li><button onClick={() => smoothScrollTo('hero')}>Initialize</button></li>
+            <li><button onClick={() => smoothScrollTo('about')}>System</button></li>
+            <li><button onClick={() => smoothScrollTo('features')}>Modules</button></li>
+            <li><button onClick={() => smoothScrollTo('narrative')}>Protocol</button></li>
+            <li><button onClick={() => smoothScrollTo('contact')}>Interface</button></li>
           </ul>
         </div>
       </nav>
 
       {/* Main Content */}
       <main>
-        {/* Hero Section */}
+        {/* Hero Section - Holographic Display */}
         <section 
           id="hero" 
           className="section hero" 
@@ -84,125 +91,162 @@ export default function Home() {
           <div className="section-content">
             <h1>Echo Chamber Narrative</h1>
             <p className="subtitle">
-              Experience digital storytelling where past information subtly influences the present, 
-              creating an immersive journey through interconnected thoughts and memories.
+              [ SYSTEM INITIALIZATION ] <br />
+              Advanced digital consciousness interface where data fragments persist and evolve, 
+              creating a holographic narrative experience that transcends temporal boundaries.
             </p>
             <button 
               onClick={() => smoothScrollTo('about')} 
               className="cta-button"
             >
-              Explore the Echo <ArrowRight size={20} />
+              <span>Access System</span>
+              <ArrowRight size={18} />
             </button>
           </div>
         </section>
 
-        {/* About Section */}
+        {/* System Analysis Section */}
         <section 
           id="about" 
-          className="section content-section" 
+          className="section content-section blueprint-section" 
           ref={el => { if (el) sectionsRef.current[1] = el; }}
         >
           <div className="section-content">
-            <h2>The Digital Echo</h2>
+            <h2>Digital Echo Protocol</h2>
             <p>
-              In our connected world, information doesn't simply disappear—it leaves traces, creating 
-              digital echoes that persist and influence future interactions. This narrative explores 
-              how these fragments of data create new forms of meaning and understanding.
+              [ DATA ANALYSIS INITIATED ] <br />
+              In advanced holographic systems, information fragments don't terminate—they persist 
+              as quantum echoes within the digital matrix. These data residuals form complex 
+              interference patterns that influence subsequent system operations.
             </p>
+            <div className="info-card">
+              <h3><Eye size={24} /> Quantum Data Persistence</h3>
+              <p>
+                Each interaction generates persistent data signatures that remain active within 
+                the system architecture, creating cascading influence networks across temporal 
+                boundaries and information hierarchies.
+              </p>
+            </div>
             <p>
-              Each interaction becomes part of a larger story, where boundaries between past and 
-              present blur, forming a unique tapestry of digital consciousness that speaks to our 
-              modern experience of information and memory.
+              The echo chamber represents a revolutionary approach to data consciousness, where 
+              information exists not as static entities but as dynamic, interconnected quantum 
+              states that continuously evolve and adapt.
             </p>
           </div>
         </section>
 
-        {/* Features Section */}
+        {/* System Modules Section */}
         <section 
           id="features" 
-          className="section content-section" 
+          className="section content-section blueprint-section" 
           ref={el => { if (el) sectionsRef.current[2] = el; }}
         >
           <div className="section-content">
-            <h2>Key Features</h2>
+            <h2>Core System Modules</h2>
             <div className="features-grid">
               <div className="info-card">
-                <h3><Layers size={24} /> Layered Narratives</h3>
+                <h3><Layers size={24} /> Multi-Dimensional Data Layers</h3>
                 <p>
-                  Multiple storylines interconnect and influence each other, creating depth 
-                  and meaning that emerges from the relationships between different elements.
+                  Advanced holographic processing enables simultaneous operation across 
+                  multiple dimensional data planes, creating complex interference patterns 
+                  that generate emergent narrative structures.
                 </p>
               </div>
               <div className="info-card">
-                <h3><Zap size={24} /> Dynamic Interactions</h3>
+                <h3><Zap size={24} /> Quantum Interface Protocol</h3>
                 <p>
-                  Responsive design adapts to user engagement, providing personalized 
-                  experiences that evolve based on interaction patterns and preferences.
+                  Real-time adaptive algorithms monitor user biometric signatures and 
+                  neural patterns, dynamically reconfiguring system parameters for 
+                  optimal consciousness integration.
                 </p>
               </div>
               <div className="info-card">
-                <h3><Eye size={24} /> Immersive Experience</h3>
+                <h3><Eye size={24} /> Holographic Projection Matrix</h3>
                 <p>
-                  Carefully crafted visual and interactive elements create an atmospheric 
-                  environment that draws users into the narrative journey.
+                  State-of-the-art volumetric display technology creates immersive 
+                  three-dimensional information environments that respond to gestural 
+                  commands and neural inputs.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Narrative Section */}
+        {/* Protocol Analysis Section */}
         <section 
           id="narrative" 
-          className="section content-section" 
+          className="section content-section blueprint-section" 
           ref={el => { if (el) sectionsRef.current[3] = el; }}
         >
           <div className="section-content">
-            <h2>The Narrative Experience</h2>
+            <h2>Echo Chamber Protocol</h2>
             <p>
-              The echo chamber concept goes beyond simple repetition—it transforms information 
-              through each iteration, adding layers of meaning and context that create something 
-              entirely new from familiar elements.
+              [ ADVANCED ANALYSIS MODE ] <br />
+              The Echo Chamber Protocol operates beyond conventional data processing—each 
+              information cycle generates quantum resonance patterns that amplify through 
+              dimensional data matrices, creating exponential narrative complexity.
             </p>
             <div className="info-card">
-              <h3>Emergent Storytelling</h3>
+              <h3><Zap size={24} /> Emergent Intelligence Networks</h3>
               <p>
-                Stories emerge not from single sources but from the intersection of multiple 
-                narratives, creating rich, multifaceted experiences that reward exploration 
-                and engagement.
+                Multi-threaded consciousness algorithms analyze behavioral patterns across 
+                temporal vectors, generating predictive narrative structures that adapt to 
+                user neural signatures in real-time processing cycles.
               </p>
             </div>
             <p>
-              This approach to digital narrative reflects how we actually process information 
-              in our connected age—not as isolated facts, but as part of an ongoing conversation 
-              between past experiences and present understanding.
+              This represents the next evolution in human-computer consciousness interface 
+              technology—where information processing transcends linear computation to achieve 
+              true quantum-state narrative generation and holographic data persistence.
             </p>
+            <button className="cta-button">
+              <span>Analyze Data Streams</span>
+              <ArrowRight size={18} />
+            </button>
           </div>
         </section>
 
-        {/* Contact Section */}
+        {/* Interface Terminal Section */}
         <section 
           id="contact" 
-          className="section content-section" 
+          className="section content-section blueprint-section" 
           ref={el => { if (el) sectionsRef.current[4] = el; }}
         >
           <div className="section-content">
-            <h2>Join the Conversation</h2>
+            <h2>Interface Terminal</h2>
             <p>
-              The Echo Chamber Narrative continues to evolve with each visitor and interaction. 
-              Your engagement adds new layers to this ongoing story, contributing to a collective 
-              understanding of how information shapes consciousness.
+              [ QUANTUM ENTANGLEMENT ESTABLISHED ] <br />
+              The Echo Chamber system continuously evolves through quantum consciousness 
+              integration. Each new user connection adds processing threads to the collective 
+              neural network, expanding system capabilities exponentially.
             </p>
             <div className="info-card">
-              <h3>Get Involved</h3>
+              <h3><Eye size={24} /> Neural Network Access</h3>
               <p>
-                Whether you're interested in digital storytelling, interactive media, or 
-                exploring new forms of narrative, there are many ways to become part of 
-                this evolving project.
+                Direct consciousness interface protocols enable seamless integration with 
+                the holographic data matrix. Users become active nodes in the distributed 
+                processing network, contributing computational resources and pattern recognition.
               </p>
             </div>
+            <div className="features-grid">
+              <div className="info-card">
+                <h3><Layers size={24} /> Data Stream Access</h3>
+                <p>
+                  Monitor real-time quantum information flows and dimensional data transfers 
+                  across the holographic processing matrix.
+                </p>
+              </div>
+              <div className="info-card">
+                <h3><Zap size={24} /> System Integration</h3>
+                <p>
+                  Connect consciousness pathways to the primary processing core for enhanced 
+                  narrative generation capabilities.
+                </p>
+              </div>
+            </div>
             <button className="cta-button">
-              Start Your Journey <ArrowRight size={20} />
+              <span>Initialize Connection</span>
+              <ArrowRight size={18} />
             </button>
           </div>
         </section>
