@@ -1,0 +1,75 @@
+ Create a UI-focused website for the "Echo Chamber Narrative" concept, emphasizing dynamic scrolling effects, visual distortions, and subtle interactive elements to create an immersive and thought-provoking experience.
+
+Overall Concept & Theme:
+The website should convey a sense of repetition, lingering presence, and depth, as if past information subtly influences the present. It's a narrative experience where content doesn't just scroll away but leaves visual "echoes" or distortions, creating a unique, almost dreamlike flow.
+
+Visual Design & Aesthetics:
+
+Color Palette: Dark, atmospheric, and mysterious. Primarily use deep blacks, muted blues, and subtle purples as background and accent colors. Incorporate faint, glowing accents (e.g., neon blue, soft violet) for interactive elements or highlights.
+
+Typography: Use the "Inter" font for all text. Ensure high contrast between text and background. Text should be clean and legible, but also capable of being visually manipulated (e.g., fading, blurring, slight distortion).
+
+Layout: Modern, minimalist, and spacious. Focus on presenting content in distinct sections that transition seamlessly. Elements should have rounded corners.
+
+General Mood: Ethereal, contemplative, slightly unsettling, but ultimately beautiful and engaging.
+
+Core Scrolling Mechanics & Animations:
+
+Trailing Content Echoes:
+
+As images, text blocks, or entire content sections scroll off-screen, a faint, blurred, desaturated, or slightly distorted "ghost" or "echo" of that content should remain visible in the background for a brief period before completely fading out. This creates a visual trail.
+
+The fading should be smooth and gradual, not abrupt.
+
+Layered Textual Echoes:
+
+When scrolling from one paragraph or section to the next, a key word, phrase, or even a sentence from the previous section should subtly reappear as a faint, background element in the new section. This could be a very light text overlay, a glowing highlight, or a slightly blurred repetition.
+
+This effect should enhance the narrative connection between sections.
+
+Distortion Waves / Progressive Unveiling:
+
+As new content sections enter the viewport, they should initially appear with a subtle visual distortion (e.g., a "liquid" or "glass" ripple effect, a slight pixelation, or a wave-like blur).
+
+This distortion should smoothly resolve and clarify as the section becomes fully centered or visible within the viewport.
+
+Conversely, as sections leave the viewport, they can progressively distort before disappearing.
+
+"Crazy" UI Elements & Interactions:
+
+Controlled Glitch Art Integration:
+
+Introduce very subtle, controlled digital "glitches" (e.g., brief pixel shifts, color channel separation, scan lines, or static noise) that appear momentarily on scroll events, section transitions, or perhaps on hover over specific interactive elements.
+
+These glitches should be artistic and enhance the "digital echo" theme, not hinder usability.
+
+Mirrored/Opposing Element Movement:
+
+For certain visual elements (e.g., abstract shapes, decorative lines, or small icons), implement a mirrored or opposing movement as the user scrolls. If one element moves left, its mirrored counterpart moves right, creating a dynamic, counter-intuitive visual dance.
+
+Ephemeral UI Elements:
+
+Navigation links, call-to-action buttons, or subtle interactive prompts should not be static. They should appear with unique, non-linear animations (e.g., fading in from an unexpected direction, assembling from particles, or "unfurling") only when relevant or when the user's scroll position suggests their need. They should then gracefully disappear.
+
+Interactive Backgrounds (Subtle):
+
+The background itself could be a subtly animated, abstract pattern that reacts to scroll speed or direction, creating a deeper sense of immersion.
+
+Technical Requirements & Implementation Notes:
+
+Technology: Build using HTML, CSS, and vanilla JavaScript. Do NOT use React or any other JavaScript framework unless explicitly requested.
+
+Responsiveness: The website MUST be fully responsive and optimized for desktop, tablet, and mobile devices. Use responsive design principles (e.g., flexible units, media queries, Tailwind CSS utility classes) to ensure optimal viewing and interaction across all screen sizes. Avoid horizontal scrolling.
+
+Performance: Prioritize smooth animations and transitions. Optimize assets and use efficient animation techniques (e.g., CSS transform and opacity for animations).
+
+Content: Use placeholder text and images that fit the dark, mysterious theme. Ensure sufficient content to demonstrate the scrolling effects across multiple sections.
+
+No alert() or confirm(): Do not use alert() or confirm() for any user interactions.
+
+Accessibility: Consider basic accessibility for navigation and content readability.
+
+Comments: Provide extensive comments throughout the HTML, CSS, and JavaScript code to explain logic, animations, and structure.
+
+Deliverables:
+A complete, self-contained HTML file including all necessary CSS and JavaScript within <style> and <script> tags, ready to be rendered in a browser.
